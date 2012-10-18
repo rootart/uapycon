@@ -355,11 +355,43 @@ import <mark>psycopg2</mark>
 connection = psycopg2.connect("dbname=... user=...")
 cursor = connection.cursor()
 cursor.execute("SELECT * FROM people 
-    WHERE <mark>ST_DWithin</mark>(geocolumn, 'POINT(46 32)', 10);")
+    WHERE <mark>ST_DWithin</mark>(geom, 'POINT(46 32)', 10);")
                 </code>
             </section>
         </pre>
     </div></div>
+
+
+
+    <div id="ORM" class="slide shout"><div>
+        <section>
+        <header><h2 style="font-size: 3em;">Database + ORM = <b style="color:red;">♥</b></h2></header>
+        </section>
+    </div></div>
+
+
+    <div id="DjangoORM" class="slide"><div>
+        <section>
+        <header>Django ORM</header>
+        <pre>
+            <code>
+People.objects.<mark>filter</mark>(<mark>geom__dwithin=(point, D(km=10))</mark>)
+            </code>
+        </pre>
+        </section>
+    </div></div>
+
+    <div id="Geoalchemy" class="slide"><div>
+        <section>
+        <header>Geoalchemy</header>
+        <p>And for sqlalchemy funs there is <a href="http://geoalchemy.org">geoalchemy</a></p>
+        which requires sqlachemy but is as easy as pie :) 
+        <pre>
+            <code>pip install <mark>geoalchemy</mark></code>
+        </pre>
+        </section>
+    </div></div>
+
 
 
     <div id="Python" class="slide shout"><div>
@@ -367,6 +399,7 @@ cursor.execute("SELECT * FROM people
         <header><h2>Python</h2></header>
         </section>
     </div></div>
+    
 
     <div id="PythonModules" class="slide"><div>
         <section>
