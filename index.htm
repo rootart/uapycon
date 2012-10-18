@@ -300,9 +300,93 @@
     </div></div>
 
 
+    <div id="Dependencies" class="slide"><div>
+        <section>
+        <header>Common Dependencies</header>
+        <ul>
+            <li>GDAL/ORG</li>
+            <li>GEOS</li>
+            <li>PROJ.4</li>
+            <li>...</li>
+        </ul>
+        </section>
+    </div></div>
+
+    <div id="Databases" class="slide shout"><div>
+        <section>
+        <header><h2>Databases</h2></header>
+        </section>
+    </div></div>
+
+
+
+    <div id="DatabasesList" class="slide"><div>
+        <section>
+        <header>Spatial databases</header>
+        <ul>
+            <li><code>PostGIS</code></li>
+            <li>Spatial Sqlite</li>
+            <li>MySQL</li>
+            <li>Oracle</li>
+            <li>MSSQL</li>
+            <li>*MongoDB</li>
+        </ul>
+        </section>
+    </div></div>
+
+
+	<div class="slide cover" id="Postgis"><div>
+		<section>
+			<img src="pictures/postgres.png" alt="">
+		</section>
+	</div></div>
+
+	<div class="slide cover" id="Postgresql"><div>
+		<section>
+			<img src="pictures/postgis.png" alt="">
+		</section>
+	</div></div>
+
+    <div id="PostgisPythonExample" class="slide"><div>
+        <section>
+        <pre>
+            <code>
+import <mark>psycopg2</mark>
+connection = psycopg2.connect("dbname=... user=...")
+cursor = connection.cursor()
+cursor.execute("SELECT * FROM people 
+    WHERE <mark>ST_DWithin</mark>(geocolumn, 'POINT(46 32)', 10);")
+                </code>
+            </section>
+        </pre>
+    </div></div>
+
+
+    <div id="Python" class="slide shout"><div>
+        <section>
+        <header><h2>Python</h2></header>
+        </section>
+    </div></div>
+
+    <div id="PythonModules" class="slide"><div>
+        <section>
+        <header>Modules</header>
+        <ul>
+            <li>OSGEO/GDAL <a href="http://gdal.org/python/">http://gdal.org/python/</a></li>
+            <li>Shapely <a href="http://pypi.python.org/pypi/Shapely">http://pypi.python.org/pypi/Shapely</a></li>
+            <li>GeoDjango <a href="http://geodjango.org/">http://geodjango.org/</a></li>
+            <li>Rtree <a href="http://pypi.python.org/pypi/Rtree/">http://pypi.python.org/pypi/Rtree/</a></li>
+            <li>pyproj <a href="http://code.google.com/p/pyproj/">http://code.google.com/p/pyproj/</a></li>
+            <li>MapFish <a href="http://mapfish.org/">http://mapfish.org/</a></li>
+            <li>GeoAlchemy <a href="http://geoalchemy.org">http://geoalchemy.org</a></li>
+            <li>...</li>
+        </ul>
+        </section>
+    </div></div>
+
     <div id="List" class="slide"><div>
         <section>
-        <header>Contents</header>
+        <header></header>
         <ul>
             <li>Location</li>
             
