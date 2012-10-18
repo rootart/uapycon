@@ -1,0 +1,329 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+	<title>GEO state in python world</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=1274, user-scalable=no">
+	<link rel="stylesheet" href="themes/ribbon/styles/style.css">
+	<link rel="stylesheet" href="themes/ribbon/styles/print.css" media="print">
+	<!--
+		To apply styles to the certain slides
+		use slide ID to get needed elements
+		-->
+	<style>
+		#Cover h2 {
+			color:#FFF;
+			text-align:center;
+			font-size:70px;
+			}
+		#FitToWidth h2,
+		#FitToHeight h2 {
+			color:#FFF;
+			text-align:center;
+			}
+	</style>
+</head>
+<body class="list">
+	<header class="caption">
+		<h1>GEO state in python world</h1>
+		<p>Vasyl Dizhak, djangostars.com</p>
+	</header>
+
+	<div class="slide cover" id="Cover"><div>
+		<section>
+			<header>
+				<h2>GEO state in python world</h2>
+			</header>
+			<img src="pictures/intro.jpg" alt="">
+		</section>
+	</div></div>
+
+    <div id="Contents" class="slide"><div>
+        <section>
+        <header>Contents</header>
+        <ul>
+            <li>Concepts</li>
+            <li>Location, distance, units</li>
+            <li>Projections, coordinate systems</li>
+            <li>GIS data formats</li>
+            <li>Storing and analysis</li>
+            <li>Libraries</li>
+            <li>Applications</li>
+            <li>Data sources</li>
+        </ul>
+        </section>
+    </div></div>
+        
+	<div class="slide cover" id="Map"><div>
+		<section>
+			<img src="pictures/map.png" alt="">
+		</section>
+	</div></div>
+    
+	<div class="slide cover" id="Map-Cluster"><div>
+		<section>
+			<img src="pictures/map-cluster.png" alt="">
+		</section>
+	</div></div>
+
+    <div id="Location" class="slide"><div>
+        <section>
+        <header>Location</header>
+        Locations represent points on the surface of the Earth.
+        The most common way of measuring is in using latitude and longitude.
+        <mark>58.1093, 35.9849</mark>
+        </section>
+    </div></div>
+
+    <div id="Distance" class="slide"><div>
+        <section>
+        <header>Distance</header>
+        <p>Distance between two points can be represented in different ways</p>
+        <ul>
+            <li>Angular distance <mark> 15 degree</mark></li>
+            <li>Linear distance <mark>5km</mark></li>
+        </ul>
+        <p>* Distance measuring became one of the key things in geo world</p>
+        </section>
+    </div></div>
+
+
+    <div id="Units" class="slide"><div>
+        <section>
+        <header>Units</header>
+        <ul>
+            <li>Meters</li>
+            <li>Inches</li>
+            <li>Yards</li>
+            <li>Kilometers</li>
+            <li>International miles</li>
+            <li>Rods</li>
+            <li>...</li>
+            
+        </ul>
+        </section>
+    </div></div>
+
+
+    <div id="Projections" class="slide"><div>
+        <section>
+        <header>Projections</header>
+        <p>Converting 3d Earth to the flat map is known as projection. <br>
+            There is no perfect projection as every projection distorts the Earth's surface is some way.
+            There are three main groups of projections
+        </p>
+        <ul>
+            <li>Cylindrical</li>
+            <li>Conical</li>
+            <li>Azimuthal</li>
+            
+        </ul>
+        </section>
+    </div></div>
+
+    <div id="CoordinateSystems" class="slide"><div>
+        <section>
+        <header>Coordinate systems</header>
+        <ul>
+            <li><strong>Geodetic</strong> - coordinates are in angels latitude/longitude</li>
+            <li><strong>Projected</strong> - represents world surface in a flat way, using linear unigs and play with various distortions</li>
+            
+        </ul>
+        </section>
+    </div></div>
+
+
+    <div id="Standards" class="slide"><div>
+        <section>
+        <header>Standards</header>
+        <ul>
+            <li><code>OGC</code>: Open Geospatial Consortium. Inc.</li>
+            <li><code>SFS</code>: Simple Feature Access for SQL which is a most popular OGC starndard for spatial databases</li>
+            <li><code>WKT</code>: Well Known Text <code>POINT (30 10)</code></li>
+            <li><code>WKB</code>: Binary representation of WKT</li>
+            <li><code>EWKT, EWKB, HEXEWKB</code></li>
+            <li><code>GML</code>: Geometry Markup Language (XML based)</li>
+            <li><code>KML</code>: Keyhole Markup Language (Google Earth/Maps format)</li>
+            
+        </ul>
+        </section>
+    </div></div>
+    
+    
+    <div id="Standards2" class="slide"><div>
+        <section>
+        <header>Standards</header>
+        <ul>
+            <li><code>WMS</code>: Web Mapping Service (serves up images)</li>
+            <li><code>WFS</code>: Web Feature Service (serves up vector data)</li>
+            <li><code>WKT</code>: Well Known Text <code>POINT (30 10)</code></li>
+            <li><code>GeoJSON</code>: Geometry JSON</li>
+            <li><code>GeoRSS</code></li>
+            <li><code>SRS</code>: Spatial Reference System</li>
+            <li><code>CRS, EPSG, SRID</code></li>
+            <li>...</li>
+            
+        </ul>
+        </section>
+    </div></div>
+
+    <div id="GeometryObjects" class="slide"><div>
+        <section>
+        <header>Geometry objects</header>
+        <ul>
+            <li>Point</li>
+            <li>LineString</li>
+            <li>LineRing</li>
+            <li>Polygon</li>
+            <li>Multi - {Point|Sting|Polygon}</li>
+        </ul>
+        <p>* In python could be represented as list, tuple, 2*n-tuple, dict, object</p>
+        </section>
+    </div></div>
+
+
+    <div id="GisDataFormats" class="slide"><div>
+        <section>
+        <header>GIS data formats</header>
+        <p>Why they are different? <p>
+        <ul>
+            <li>Descritbe geographical <strong>features</strong></li>
+            <li>Additional <strong>metadata</strong> like coordinate system, units etc</li>
+            <li>Information about geographical feature that are being described</li>
+            <li>Display information</li>
+        </ul>
+        </section>
+    </div></div>
+
+    <div id="GisDataFormats2" class="slide"><div>
+        <section>
+        <ul>
+            <li>Well-known Text (WKT)</li>
+            <li>Well-known Binary (WKB)</li>
+            <li>GeoJSON</li>
+            <li>Shapefile</li>
+            <li>Simple Features</li>
+            <li>Coverage</li>
+        </ul>
+        </section>
+    </div></div>
+    
+    <div id="GisDataFormatsGeneral" class="slide"><div>
+        <section>
+            <br>
+            <p>In general all geo data formats can be devided into two main categories</p>
+        <ul>
+            <li><strong>Vector</strong>
+                <ul>
+                    <li>ESRI Shapefile</li>
+                    <li>Well-known Binary (WKB)</li>
+                    <li>GeoJSON</li>
+                    <li>KML</li>
+                </ul>
+            </li>
+
+            <li><strong>Raster</strong>
+                <ul>
+                    <li>GeoTiFF</li>
+                    <li>GeoPDF</li>
+                </ul>
+            </li>
+        </ul>
+        </section>
+    </div></div>
+
+
+    <div id="Operations" class="slide"><div>
+        <section>
+        <header>Operations</header>
+        <ul>
+            <li>Intersection</li>
+            <li>Difference</li>
+            <li>Union</li>
+            <li>Centroid</li>
+            <li>Buffer</li>
+        </ul>
+        </section>
+    </div></div>
+
+
+    <div id="Operations2" class="slide"><div>
+        <section>
+        <header></header>
+        <ul>
+            <li>Contains</li>
+            <li>Within</li>
+            <li>Intersects</li>
+            <li>Disjoint</li>
+        </ul>
+        </section>
+    </div></div>
+    
+    
+    <div id="OperationsDevelopment" class="slide"><div>
+        <section>
+        <header>What is common for developers and real life apps</header>
+        <ul>
+            <li><strong>Nearest neigbor</strong> - we should get features that are closest to some point</li>
+            <li><strong>Bounding box</strong> - return all features that are in a given bounds</li>
+            <li><strong>Point query</strong> return all features that intersects with point</li>
+        </ul>
+        </section>
+    </div></div>
+
+
+
+    <div id="StorageAndAnalysis" class="slide"><div>
+        <section>
+        <header>Storage and analysis</header>
+        <ul>
+            <li>Spatial indexes</li>
+            <li>GEO files as a storage</li>
+            <li>Spatial databases</li>
+            <li>Search engines for storing and analyzing geo data</li>
+</li>
+        </ul>
+        </section>
+    </div></div>
+
+
+    <div id="SpatialIndexes" class="slide"><div>
+        <section>
+        <header>Indexes</header>
+        <p>For speeding geo operations under the collections of geometries in different storages we can and should use custom indexes and there is two main of them that performs well for spatial data</p>
+        <ul>
+            <li><code>R-tree</code> which is good for all types geometries</li>
+            <li><code>Quad-tree</code> performs best with point data</li>
+            
+        </ul>
+        </section>
+    </div></div>
+
+
+    <div id="List" class="slide"><div>
+        <section>
+        <header>Contents</header>
+        <ul>
+            <li>Location</li>
+            
+        </ul>
+        </section>
+    </div></div>
+
+
+
+    <div id="List" class="slide"><div>
+        <section>
+        <header>Contents</header>
+        <ul>
+            <li>Location</li>
+            
+        </ul>
+        </section>
+    </div></div>
+	<div class="progress"><div></div></div>
+	<script src="scripts/script.js"></script>
+	<!-- Copyright © 2010–2012 Vadim Makeev — pepelsbey.net -->
+	<!-- Photos by John Carey — fiftyfootshadows.net -->
+</body>
+</html>
