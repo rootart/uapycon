@@ -347,6 +347,13 @@
 		</section>
 	</div></div>
 
+
+    <div class="slide cover" id="CartoDB"><div>
+        <section>
+            <img src="pictures/cartodb.png" alt="">
+        </section>
+    </div></div>
+
     <div id="PostgisPythonExample" class="slide"><div>
         <section>
         <pre>
@@ -369,12 +376,31 @@ cursor.execute("SELECT * FROM people
         </section>
     </div></div>
 
+    <div id="DjangoORMModel" class="slide"><div>
+        <section>
+        <pre>
+<code>from <mark>django.contrib.gis.db</mark> import models
+class Person(models.Model):
+    name = models.CharField(max_length=255)
+    nickname = models.CharField(max_length=100)
+    location = models.CharField(max_length=255)
+    iso2 = models.CharField(max_length=2)
+    avatar = models.CharField(max_length=255)
+    geom = models.<mark>PointField()</mark>
+    objects = models.<mark>GeoManager()</mark>
+            </code>
+        </pre>
+        </section>
+    </div></div>
+
+
 
     <div id="DjangoORM" class="slide"><div>
         <section>
         <header>Django ORM</header>
         <pre>
             <code>
+
 People.objects.<mark>filter</mark>(<mark>geom__dwithin=(point, D(km=10))</mark>)
             </code>
         </pre>
@@ -410,6 +436,7 @@ People.objects.<mark>filter</mark>(<mark>geom__dwithin=(point, D(km=10))</mark>)
             <li>GeoDjango <a href="http://geodjango.org/">http://geodjango.org/</a></li>
             <li>Rtree <a href="http://pypi.python.org/pypi/Rtree/">http://pypi.python.org/pypi/Rtree/</a></li>
             <li>pyproj <a href="http://code.google.com/p/pyproj/">http://code.google.com/p/pyproj/</a></li>
+            <li>Mapnik <a href="http://mapnik.org">http://mapnik.org</a></li>
             <li>MapFish <a href="http://mapfish.org/">http://mapfish.org/</a></li>
             <li>GeoAlchemy <a href="http://geoalchemy.org">http://geoalchemy.org</a></li>
             <li>...</li>
@@ -417,18 +444,129 @@ People.objects.<mark>filter</mark>(<mark>geom__dwithin=(point, D(km=10))</mark>)
         </section>
     </div></div>
 
-    <div id="List" class="slide"><div>
+
+    <div id="Pypi" class="slide"><div>
         <section>
-        <header></header>
+        <header>Even more python gis packages at PYPI</header>
+<pre><code>
+
+    Topic :: Scientific/Engineering :: <mark>GIS</mark>  
+
+</code></pre>
+        </section>
+    </div></div>
+
+
+
+    <div id="GdalExample" class="slide"><div>
+        <section>
+        <header>GDAL</header>
+<pre><code>
+from <mark>osgeo</mark> import <mark>ogr</mark>
+shapefile = <mark>ogr.Open("roads.shp")</mark>
+layer = shapefile.<mark>GetLayer(0)</mark>
+count = layer.<mark>GetFeatureCount()</mark>
+feature = layer[0]
+print count, <mark>feature.keys()</mark>, <mark>feature.ExportToJson()</mark>
+
+</code></pre>
+        </section>
+    </div></div>
+
+
+
+    <div id="GDALOutput" class="slide"><div>
+        <section>
+<pre><code>
+<mark>22724</mark>
+['<mark>osm_id</mark>', '<mark>name</mark>',
+'<mark>ref</mark>', '<mark>type</mark>', '<mark>oneway</mark>', '<mark>maxspeed</mark>']
+{"geometry": {"type": "<mark>LineString</mark>", "coordinates":
+ [[30.527518600000001, 50.440472700000001], 
+ [30.527638799999998, 50.440396100000001], ...},
+"type": "Feature",
+"<mark>properties</mark>": {"maxspeed": 0, "name": null,
+"ref": null, "osm_id": 4306104.0, "oneway": 0,
+"type": "footway"}}
+</code></pre>
+        </section>
+    </div></div>
+
+
+    <div id="Shapely" class="slide"><div>
+        <section>
+        <header>Shapely</header>
+<pre><code>
+from <mark>shapely.geometry</mark> import <mark>Point</mark>
+from <mark>shapely.ops</mark> import <mark>cascaded_union</mark>
+
+polygons = [Point(i, 0).<mark>buffer(0.7)</mark> for i in range(5)]
+geom = <mark>cascaded_union</mark>(polygons)
+
+geom.<mark>to_wkt()</mark>
+</code></pre>
+        </section>
+    </div></div>
+
+
+    <div id="ShapelyOuput" class="slide"><div>
+        <section>
+<pre><code>
+'<mark>POLYGON</mark> ((0.5000000000000001 -0.4894302343731161,
+0.4949747468305837 -0.4949747468305829,
+0.4440752989145523 -0.5411073173539154,
+0.3888991631137222 -0.5820287286117812,
+0.3299777157781990 -0.6173448850438481,
+0.2678784026555636 -0.6467156727579003, ...
+</code></pre>
+        </section>
+    </div></div>
+
+    <div class="slide cover" id="ShapelyImage"><div>
+        <section>
+            <img src="pictures/cunion.png" alt="">
+        </section>
+    </div></div>
+
+
+    <div id="ShapelyArea" class="slide"><div>
+        <section>
+        <header>Geometry properties</header>
+<pre><code>
+>>> print geom.<mark>area</mark>
+>>> 6.6103013551167971
+
+>>> geom.<mark>envelope</mark>.to_wkt()
+>>> 'POLYGON ((-0.7000000000000000 -0.7000000000000000,
+4.7000000000000002 -0.7000000000000000,
+...'
+</code></pre>
+        </section>
+    </div></div>
+
+
+    <div id="acknowledgments" class="slide"><div>
+        <section>
+        <header>Acknowledgments</header>
         <ul>
-            <li>Location</li>
+            <li>Pictures
+<ul>
+    <li><a href="http://500px.com/search?utf8=%E2%9C%93&q=geography">http://500px.com</a>, <a href="http://toblerity.github.com/shapely/manual.html">Shapely manual</a></li>
+</ul>
+            </li>
+            <li>
+                Concepts
+                <ul>
+                    <li><a href="https://speakerdeck.com/u/paulsmith/p/spatial-data-and-web-mapping-with-python">Paul Smith</a>,  <a href="https://speakerdeck.com/u/sd/p/the-streeteasy-geo-stack">Sebastian Delmont</a></li>
+                </ul>
+            </li>
             
         </ul>
         </section>
     </div></div>
 
 
-
+http://500px.com/search?utf8=%E2%9C%93&q=geography
     <div id="List" class="slide"><div>
         <section>
         <header>Contents</header>
