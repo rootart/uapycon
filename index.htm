@@ -26,17 +26,26 @@
 <body class="list">
 	<header class="caption">
 		<h1>GEO state in python world</h1>
-		<p>Vasyl Dizhak, djangostars.com</p>
+		<p>Vasyl Dizhak, djangostars.com <a href="http://twitter.com/rootart">@rootart</a></p>
 	</header>
 
 	<div class="slide cover" id="Cover"><div>
 		<section>
 			<header>
-				<h2>GEO state in python world</h2>
+				<h2>GEO state in python world</br>Vasyl Dizhak</br>@rootart</h2>
+
 			</header>
 			<img src="pictures/intro.jpg" alt="">
 		</section>
 	</div></div>
+
+
+    <div id="PresentationLink" class="slide shout"><div>
+        <section>
+        <header><h2><a  style="font-size: 0.4em" href="http://rootart.github.com/uapycon/">http://rootart.github.com/uapycon/</a></h2></header>
+        </section>
+    </div></div>
+
 
     <div id="Contents" class="slide"><div>
         <section>
@@ -544,6 +553,44 @@ geom.<mark>to_wkt()</mark>
         </section>
     </div></div>
 
+    <div id="Mapnik" class="slide"><div>
+        <section>
+<pre><code>
+import <mark>mapnik</mark>
+m = mapnik <mark>Map(1200, 800)</mark>
+m.background = mapnik.Color('#fff')
+s = <mark>mapnik.Style()</mark>
+r = <mark>mapnik.Rule()</mark>
+line_symbolizer = mapnik.<mark>LineSymbolizer(mapnik.Color('#000'),2)</mark>
+r.symbols.append(line_symbolizer)
+s.rules.append(r)
+m.append_style('style',s)
+</code></pre>
+        </section>
+    </div></div>
+
+
+    <div id="Mapnik2" class="slide"><div>
+        <section>
+ <pre><code>
+...
+ds = <mark>mapnik.Shapefile(file='roads.shp')</mark>
+layer = mapnik.Layer('ukraine_roads')
+layer.<mark>datasource</mark> = ds
+layer.<mark>styles.append('style')</mark>
+m.layers.<mark>append(layer)</mark>
+m.zoom_all()
+mapnik.<mark>render_to_file(m,'ukraine-roads.png', 'png')</mark>
+ </code></pre>
+        </section>
+    </div></div>
+
+
+    <div class="slide cover" id="MapnikImage"><div>
+        <section>
+            <img src="pictures/ukraine-roads.png" alt="">
+        </section>
+    </div></div>
 
     <div id="acknowledgments" class="slide"><div>
         <section>
@@ -560,8 +607,20 @@ geom.<mark>to_wkt()</mark>
                     <li><a href="https://speakerdeck.com/u/paulsmith/p/spatial-data-and-web-mapping-with-python">Paul Smith</a>,  <a href="https://speakerdeck.com/u/sd/p/the-streeteasy-geo-stack">Sebastian Delmont</a></li>
                 </ul>
             </li>
+            <li>Presentation engine
+                <ul>
+                    <li><a href="https://github.com/pepelsbey/shower">shower</a> by Vadim Makeev</li>
+                </ul>
+            </li>
             
         </ul>
+        </section>
+    </div></div>
+
+    <div id="List" class="slide shout"><div>
+        <section>
+<header>        <h2>Thank you!</br>
+            Questions</h2></header>
         </section>
     </div></div>
 
