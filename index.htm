@@ -441,6 +441,37 @@ People.objects.<mark>filter</mark>(<mark>geom__dwithin=(point, D(km=10))</mark>)
     </div></div>
 
 
+    <div id="SearchEngines" class="slide"><div>
+        <section>
+        <header>Search engines</header>
+        <ul>
+        <li>Solr 
+          <ul>
+              <li>geofilt  <code>...&q=*:*&fq={!geofilt pt=45.15,-93.85 sfield=store d=5}</code> </li>
+              <li>geodist <code>...&q=*:*&sfield=store&pt=45.15,-93.85&sort=geodist() asc</code></li>
+          </ul>
+        </li>
+        <li>Elasticsearch</li>
+    </ul>
+        </section>
+    </div></div>
+
+        <div id="MongoDB" class="slide"><div>
+        <section>
+        <header>Geospatial indexing in mongodb</header>
+        <ul>
+            <li><a href="http://www.mongodb.org/display/DOCS/Geospatial+Indexing">rtfm</a></li>
+            <li><a href="https://openshift.redhat.com/community/blogs/spatial-mongodb-in-openshift-be-the-next-foursquare-part-1">Spatial MongoDB in OpenShift, be the next FourSquare</a></li>
+            <pre><code>
+db.people.<mark>ensureIndex</mark>( { geom : <mark>"2d"</mark> } )
+db.people.<mark>find</mark>( { location : { <mark>$near</mark> : [0,0] }})
+            </code></pre>
+        </ul>
+        </section>
+    </div></div>
+
+
+
 
     <div id="Python" class="slide shout"><div>
         <section>
